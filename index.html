@@ -136,7 +136,7 @@ input:focus,select:focus{border-color:var(--gold-deep);outline:2px solid rgba(22
 </div></footer>
 
 <script>
-const PRIVACY_URL="#",ENDPOINTS={"Individual":"https://script.google.com/macros/s/AKfycbxCrNvvsv-uTgjmqAUVzRijck_OdHjk57yREXzUGioTSWqj2BJc6CKDfB3AzFSrbQDFvA/exec","Organisation":"","Institution or educational body":"","Other":""}; // set the privacy notice link; add a link for each submitter type
+const PRIVACY_URL="#",ENDPOINT="https://script.google.com/macros/s/AKfycbyrMOvkM4v6rNJiT_YzDAfp-CCgggXrwOPnYXYtN8dknrPFiGrnnE8n2hS0k7jTZwrChg/exec" // set the privacy notice link; ENDPOINT is the deployed Apps Script /exec URL
 document.getElementById("pl").href=PRIVACY_URL;
 const $=s=>document.querySelector(s);
 const q=(l,t,o={})=>({l,t,...o});
@@ -240,11 +240,9 @@ $("#f").onsubmit=async e=>{
  if(bad.length){bad[0].scrollIntoView({behavior:"smooth",block:"center"});$("#msg").textContent="Please review the highlighted fields.";return}
  if(!ok.checked)return;
  $("#msg").textContent="";data.path=route.value;data["Receive Anchored Intelligence"]=$("#news").checked?"Yes":"No";
- const ENDPOINT=ENDPOINTS[who.value];
- if(ENDPOINT){const btn=document.querySelector(".done .btn");btn.disabled=true;btn.textContent="Submitting…";
+ {const btn=document.querySelector(".done .btn");btn.disabled=true;btn.textContent="Submitting…";
   try{await fetch(ENDPOINT,{method:"POST",mode:"no-cors",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(data)})}
   catch(x){$("#msg").textContent="Something went wrong sending your submission. Please check your connection and try again.";btn.disabled=false;btn.textContent="Submit to Mind Anchor";return}}
- else console.warn("No endpoint configured for:",who.value);
  $("#f").classList.add("hide");const a=$("#after");a.classList.add("show");a.focus();a.scrollIntoView({behavior:"smooth",block:"start"});
 };
 </script>
