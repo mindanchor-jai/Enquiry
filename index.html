@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Strategic Insight Form — Mind Anchor</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0B1238;--navy-2:#141C52;--gold:#E2B84E;--gold-deep:#B98A1E;--ivory:#F5EFE0;--paper:#FBF7EC;--ink:#161A3F;--soft:#575D82;--rule:#D9CFB6}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--ivory);color:var(--ink);font:18px/1.7 'Figtree',sans-serif;-webkit-font-smoothing:antialiased}
+h1,h2{font-family:'Young Serif',serif;font-weight:400}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+::selection{background:var(--gold);color:var(--navy)}
+.wrap{max-width:820px;margin:0 auto;padding:0 1.5rem}
+/* header + footer */
+.bar{background:var(--navy);color:var(--ivory)}
+.bar .wrap{max-width:1040px;display:flex;align-items:center;justify-content:space-between;gap:1.2rem;flex-wrap:wrap}
+header .wrap{padding-top:.8rem;padding-bottom:.8rem}
+.brand{display:flex;align-items:center;gap:.7rem;text-decoration:none;font:1.15rem 'Young Serif',serif;color:var(--gold)}
+.brand img{width:52px;height:52px;display:block}
+nav{display:flex;gap:1.5rem;font-size:.95rem;flex-wrap:wrap}
+nav a{text-decoration:none;color:#D9DCF0}nav a:hover,nav a[aria-current]{color:var(--gold)}
+.soc{display:flex;gap:.6rem}
+.soc a{width:34px;height:34px;border:1px solid rgba(226,184,78,.5);border-radius:50%;display:grid;place-items:center;color:var(--gold)}
+.soc a:hover{background:var(--gold);color:var(--navy)}
+.soc svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+footer{margin-top:5rem;border-top:1px solid rgba(226,184,78,.35)}
+footer .wrap{padding-top:2rem;padding-bottom:1rem}
+footer p.fine{width:100%;font-size:.85rem;color:#AEB4DA;border-top:1px solid rgba(226,184,78,.15);padding:1rem 0 1.4rem;line-height:1.5}
+/* hero */
+.hero{background:var(--navy);color:var(--ivory);padding:2.6rem 0 3rem}
+.tag{display:inline-block;font-size:.92rem;font-weight:600;color:var(--gold);border-left:3px solid var(--gold);padding:.1rem 0 .1rem .7rem;margin-bottom:1.4rem}
+.hero h1{font-size:clamp(2rem,5.4vw,3.3rem);line-height:1.1;max-width:16ch;margin-bottom:1.1rem}
+.hero p{max-width:54ch;color:#D9DCF0;font-size:1.12rem;line-height:1.6}
+.hero p.note{margin-top:1.2rem;font-size:.95rem;color:#AEB4DA}
+/* steps */
+.step{padding:2.6rem 0 0}
+.step h2{font-size:1.65rem;line-height:1.2;margin-bottom:.4rem}
+.step>p{color:var(--soft);margin-bottom:1.1rem;max-width:58ch}
+label.q{display:block;font-weight:600;margin:1.1rem 0 .35rem}
+label.q span{font-weight:400;color:var(--soft)}
+textarea{width:100%;background:var(--paper);border:1px solid var(--rule);border-radius:2px;padding:.8rem .95rem;font:inherit;font-size:1rem;line-height:1.55;color:var(--ink);resize:vertical;min-height:5.2rem}
+textarea:focus{border-color:var(--gold-deep);outline:2px solid rgba(226,184,78,.5)}
+.pills{display:flex;flex-wrap:wrap;gap:.5rem}
+.pills label{cursor:pointer}
+.pills input{position:absolute;opacity:0}
+.pills span{display:block;padding:.4rem .95rem;border:1px solid var(--rule);background:var(--paper);border-radius:99px;font-size:.96rem;line-height:1.4}
+.pills input:checked+span{background:var(--navy);color:var(--ivory);border-color:var(--navy)}
+.pills input:focus-visible+span{outline:2px solid var(--gold);outline-offset:2px}
+.pills.stack span{border-radius:2px;width:100%}
+.pills.stack label{width:100%}
+
+input[type=text],input[type=email],input[type=url],select{width:100%;background:var(--paper);border:1px solid var(--rule);border-radius:2px;padding:.75rem .95rem;font:inherit;font-size:1rem;color:var(--ink)}
+input:focus,select:focus{border-color:var(--gold-deep);outline:2px solid rgba(226,184,78,.5)}
+.guide{font-size:.92rem;color:var(--soft);margin:-.2rem 0 .45rem;max-width:62ch}
+.err{color:#9B2C1F;font-size:.9rem;margin-top:.3rem;min-height:0}
+.bad{border-color:#9B2C1F!important}
+.hide{display:none}
+.pills.stack{gap:.4rem}
+.ack{margin-top:2.4rem;border-top:1px solid var(--rule);padding-top:1.2rem}
+.ack label.chk{display:flex;gap:.7rem;align-items:flex-start;font-weight:600;cursor:pointer}
+.ack input[type=checkbox]{margin-top:.45rem;accent-color:var(--navy);width:1.1rem;height:1.1rem}
+.priv{font-size:.95rem;color:var(--soft);margin-top:.9rem;max-width:62ch}
+.priv a{color:var(--ink);font-weight:600}
+.news{margin-top:1.4rem;background:var(--paper);border:1px solid var(--rule);padding:1rem 1.1rem}
+.news label.chk{display:flex;gap:.7rem;align-items:flex-start;cursor:pointer}
+.news input{margin-top:.45rem;accent-color:var(--navy);width:1.1rem;height:1.1rem}
+.news small{display:block;font-size:.95rem;font-weight:400;color:var(--soft);line-height:1.55;margin-top:.2rem}
+.news small.opt{font-size:.88rem;color:var(--gold-deep)}
+#after{display:none;margin-top:3rem;border:1px solid var(--gold-deep);background:var(--paper);padding:1.8rem 1.6rem}
+#after.show{display:block}
+#after h2{font-size:1.6rem;margin-bottom:.6rem}
+#after p{margin-top:.7rem}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<symbol id="li" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M8 10v6M8 7.5v.01M12 16v-6M12 12.5c0-2 4-2.5 4 .5v3"/></symbol>
+<symbol id="ig" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.3 6.7v.01"/></symbol>
+<symbol id="x" viewBox="0 0 24 24"><path d="M4 4l16 16M20 4L4 20"/></symbol>
+<symbol id="yt" viewBox="0 0 24 24"><rect x="2.5" y="5.5" width="19" height="13" rx="4"/><path d="M10 9.5v5l4.5-2.5z"/></symbol>
+</defs></svg>
+
+<header class="bar"><div class="wrap">
+  <a class="brand" href="https://mindanchor-jai.github.io/"><img src="Icon.png" alt="Mind Anchor logo"><span>Mind Anchor</span></a>
+  <nav aria-label="Main">
+    <a href="https://mindanchor-jai.github.io/Articles/">Articles</a>
+    <a href="https://mindanchor-jai.github.io/Framework/">Framework Library</a>
+    <a href="https://mindanchor-jai.github.io/Forms/index.html" aria-current="page">Weekly Workbooks</a>
+  </nav>
+  <div class="soc">
+    <a href="#" aria-label="LinkedIn"><svg><use href="#li"/></svg></a>
+    <a href="#" aria-label="Instagram"><svg><use href="#ig"/></svg></a>
+    <a href="#" aria-label="X"><svg><use href="#x"/></svg></a>
+    <a href="#" aria-label="YouTube"><svg><use href="#yt"/></svg></a>
+  </div>
+</div></header>
+
+<section class="hero"><div class="wrap">
+  <span class="tag">Strategic Insight</span>
+  <h1>Tell us about your context</h1>
+  <p>Share a strategic enquiry or propose a partnership. A few common questions come first, then the form follows the path that fits your reason for getting in touch.</p>
+  <p class="note">Questions marked Optional can be skipped. Share only what is relevant to your enquiry.</p>
+</div></section>
+<main class="wrap"><form id="f" novalidate>
+<section class="step"><h2>About you</h2><p>Section 01 · A few details so we know who we are speaking with.</p><div id="common"></div></section>
+<div id="path"></div>
+<section class="step hide" id="end"><h2>Submission</h2>
+<div class="ack"><label class="chk"><input type="checkbox" id="ok"><span>I confirm that the information provided is accurate to the best of my knowledge.</span></label><div class="err" id="ok-e"></div>
+<div class="news"><label class="chk"><input type="checkbox" id="news"><span>Receive Anchored Intelligence<small>I'd like to receive Mind Anchor's weekly newsletter, featuring ideas, perspectives, and explorations of the patterns shaping human experience and the systems around us.</small><small class="opt">Optional · You can unsubscribe at any time.</small></span></label></div>
+<p class="priv">By submitting, you acknowledge how Mind Anchor uses your information. Our <a href="PRIVACY_URL" id="pl" target="_blank" rel="noopener">privacy notice</a> explains how contact details and submitted information are used, stored, accessed, and retained.</p></div>
+<div class="done"><button class="btn" type="submit">Submit to Mind Anchor</button><p class="err" id="msg" role="alert"></p></div></section>
+</form>
+<section id="after" aria-live="polite" tabindex="-1"><h2>Your submission has been received.</h2>
+<p>Thank you for providing the context. Mind Anchor will review the information and determine whether further clarification, independent resources, professional engagement, or another response may be appropriate.</p>
+<p>Submitting this form does not automatically establish an engagement or guarantee that Mind Anchor will accept the request.</p></section>
+</main>
+<footer class="bar"><div class="wrap">
+  <a class="brand" href="https://mindanchor-jai.github.io/"><img src="Icon.png" alt="Mind Anchor logo"><span>Mind Anchor</span></a>
+  <nav aria-label="Footer">
+    <a href="https://mindanchor-jai.github.io/Articles/">Articles</a>
+    <a href="https://mindanchor-jai.github.io/Framework/">Framework Library</a>
+    <a href="https://mindanchor-jai.github.io/Forms/index.html">Weekly Workbooks</a>
+  </nav>
+  <div class="soc">
+    <a href="#" aria-label="LinkedIn"><svg><use href="#li"/></svg></a>
+    <a href="#" aria-label="Instagram"><svg><use href="#ig"/></svg></a>
+    <a href="#" aria-label="X"><svg><use href="#x"/></svg></a>
+    <a href="#" aria-label="YouTube"><svg><use href="#yt"/></svg></a>
+  </div>
+  <p class="fine">© Mind Anchor. This workbook is a tool for self-observation. It is not a test, a diagnosis or therapy, and your answers belong to you.</p>
+</div></footer>
+
+<script>
+const PRIVACY_URL="#",ENDPOINT=""; // set the privacy notice link and the form-handling endpoint
+document.getElementById("pl").href=PRIVACY_URL;
+const $=s=>document.querySelector(s);
+const q=(l,t,o={})=>({l,t,...o});
+const T="t",E="e",U="u",L="l",D="d",M="m";
+const common=[
+q("What is your name?",T,{id:"name",a:"name"}),
+q("What is your email address?",E,{id:"email",a:"email"}),
+q("Please confirm your email address.",E,{id:"email2",a:"off"}),
+q("Are you contacting Mind Anchor as an individual or on behalf of an organisation?",D,{id:"who",o:["Individual","Organisation","Institution or educational body","Other"]}),
+q("What is your organisation's name?",T,{id:"org",cond:1}),
+q("Which country are you based in?",T,{id:"country",a:"country-name"}),
+q("Is there a website or professional profile we should review to understand your context?",U,{id:"url",opt:1,ph:"https://"}),
+q("What brings you to Mind Anchor?",D,{id:"route",o:["Strategic Enquiry","Partnership or Collaboration"]})];
+const A=[
+{h:"Section 02 — The situation",p:"Understand what is happening, how complex it is, and what kind of clarity is needed.",qs:[
+q("What would you like Mind Anchor to help you understand?",L,{g:"Describe the main situation, problem, decision, recurring pattern, or question."}),
+q("Who or what is primarily affected by this situation?",M,{o:["Me personally","My work or career","My relationships","My team","My organisation","A group or community","Another person or situation"],s:"Select all that apply."}),
+q("Please describe what is happening.",L,{g:"What is happening, what have you observed, and what makes this situation worth examining? Include a specific example where possible."}),
+q("How long has this situation been present?",D,{o:["Less than a week","A few weeks","A few months","Six months to a year","More than a year","It occurs repeatedly, but the timing varies","I am not sure"]}),
+q("How often does the situation occur?",D,{o:["It happened once","Occasionally","Regularly","It is ongoing","It occurs under specific conditions","I am not sure"]})]},
+{h:"Section 03 — Previous attempts and current understanding",qs:[
+q("What have you already done to understand or address this situation?",L,{g:"Mention steps taken, advice received, methods tried, or decisions already made. If you have not tried anything yet, say so."}),
+q("What do you currently believe is causing or maintaining the situation?",L,{g:"Share your current understanding, even if you are uncertain."}),
+q("What remains unclear to you?",L,{g:"Identify the question you have not been able to answer or the part you cannot make sense of."})]},
+{h:"Section 04 — Consequences and desired clarity",qs:[
+q("What happens if this situation remains unresolved?",L,{g:"Describe the likely consequences for you, other people, your work, or your organisation."}),
+q("Is there a decision that needs to be made?",D,{o:["Yes, a specific decision is pending","Yes, but the available options are unclear","No immediate decision is pending","I am trying to understand the situation before deciding","I am not sure"]}),
+q("What would you like to be clearer about after engaging with Mind Anchor?",L,{g:"For example, understanding the underlying pattern, examining your interpretation, evaluating options, deciding what to do, or addressing a recurring problem."}),
+q("When do you need to make progress on this?",D,{o:["As soon as possible","Within two weeks","Within one month","Within three months","There is no fixed deadline","I am exploring the situation without a deadline"]})]},
+{h:"Section 05 — Scope and involvement",qs:[
+q("Is this primarily a situation you want to examine yourself, or does it involve other people who may need to participate?",D,{o:["I want to examine it independently","I may need input from one or two other people","It involves a team or group","It involves an organisation or multiple stakeholders","I am not sure yet"]}),
+q("What kind of support are you currently looking for?",M,{s:"Select all that apply.",o:["Knowledge or reading material to explore independently","A structured tool or workbook","A review of my written reflection or analysis","A focused session to examine the situation","A detailed diagnosis of the underlying problem","Advice on decisions or possible actions","Ongoing support as the situation develops","I do not know what kind of support I need"]}),
+q("Is there anything else we should know to understand the situation properly?",L,{opt:1,g:"Share only information relevant to the enquiry. Avoid confidential business information or sensitive personal details unless they are necessary and you are comfortable sharing them."})]}];
+const B=[
+{h:"Section 02 — The proposal",p:"Understand the opportunity and how it aligns with Mind Anchor's work.",qs:[
+q("What kind of partnership or collaboration are you proposing?",D,{o:["Research or knowledge development","Content or publication","Educational initiative or learning programme","Organisational or institutional collaboration","Event, discussion, or public initiative","Joint project or service","Funding or sponsorship","Other","I am exploring possibilities and do not have a defined proposal yet"]}),
+q("What is the idea or opportunity?",L,{g:"Explain the proposal in plain language, including the problem, subject, or opportunity it addresses."}),
+q("Why are you approaching Mind Anchor specifically?",L,{g:"Identify the connection between the proposal and Mind Anchor's work, knowledge, or approach."}),
+q("What would you like to achieve through this collaboration?",L,{g:"Describe the intended outcome, who it would benefit, and what success would look like."})]},
+{h:"Section 03 — Roles and contributions",qs:[
+q("What would you expect Mind Anchor to contribute?",M,{s:"Select all that apply.",o:["Intellectual input or conceptual development","Research or analysis","Frameworks, workbooks, or other knowledge resources","Writing, publication, or editorial contribution","Speaking, teaching, or facilitating","Strategic advice or diagnosis","Ongoing advisory involvement","Funding or financial participation","Something else","The contribution is not yet defined"]}),
+q("What would you or your organisation contribute?",L,{g:"Describe the people, expertise, resources, access, infrastructure, funding, or work you would bring, if known."}),
+q("Who would be involved in the collaboration?",L,{g:"Identify the organisations, teams, institutions, audiences, or other parties involved. Names of individuals are optional at this stage."}),
+q("Who would be responsible for making decisions and approving the collaboration?",D,{o:["I can make the decision","Another person must approve it","A team or committee will decide","Multiple organisations must agree","The decision-making process is not yet clear"]})]},
+{h:"Section 04 — Practical requirements",qs:[
+q("Is there a defined scope for the collaboration?",D,{o:["Yes, the scope and expected outputs are defined","The main idea is clear, but the scope needs development","The collaboration is exploratory","I need Mind Anchor's input to define the scope"]}),
+q("Is there a proposed timeline?",D,{o:["Immediate or within two weeks","Within one month","Within three months","More than three months away","Ongoing or recurring","No timeline has been established"]}),
+q("Does the proposal involve a budget or financial commitment?",D,{o:["Yes, funding or a budget is available","Funding is being explored","We need a proposal before determining the budget","The collaboration is intended to be non-financial","This has not been discussed yet"]}),
+q("Are there any requirements or constraints Mind Anchor should understand?",L,{opt:1,g:"For example, deadlines, approvals, expected deliverables, confidentiality requirements, location, or resource limitations."})]},
+{h:"Section 05 — Next steps",qs:[
+q("What would you consider a useful next step?",D,{o:["An initial review of the proposal","Clarification of whether the proposal aligns with Mind Anchor","A discussion to explore the idea","Development of a defined scope","A formal proposal","I am open to Mind Anchor recommending the next step"]}),
+q("Is there anything else we should know about the proposal?",L,{opt:1})]}];
+let n=0;
+const esc=s=>s.replace(/&/g,"&amp;").replace(/"/g,"&quot;").replace(/</g,"&lt;");
+function field(x){
+ const id=x.id||"q"+(++n),req=!x.opt;x.id=id;
+ const tag=req?"":'<span> Optional</span>';
+ let h='<div class="fld'+(x.cond?" hide":"")+'" data-id="'+id+'" data-t="'+x.t+'"'+(req?' data-req="1"':'')+'>';
+ if(x.t==="m"){
+  h+='<label class="q" id="'+id+'L">'+esc(x.l)+tag+'</label>'+(x.s?'<p class="guide">'+x.s+'</p>':'')+'<div class="pills stack" role="group" aria-labelledby="'+id+'L">'+x.o.map(o=>'<label><input type="checkbox" name="'+id+'" value="'+esc(o)+'"><span>'+esc(o)+'</span></label>').join("")+'</div>';
+ }else{
+  h+='<label class="q" for="'+id+'">'+esc(x.l)+tag+'</label>'+(x.g?'<p class="guide">'+esc(x.g)+'</p>':'');
+  if(x.t==="l")h+='<textarea id="'+id+'" rows="4"></textarea>';
+  else if(x.t==="d")h+='<select id="'+id+'"><option value="">Select one</option>'+x.o.map(o=>'<option>'+esc(o)+'</option>').join("")+'</select>';
+  else h+='<input id="'+id+'" type="'+({e:"email",u:"url"}[x.t]||"text")+'"'+(x.a?' autocomplete="'+x.a+'"':'')+(x.ph?' placeholder="'+x.ph+'"':'')+'>';
+ }
+ return h+'<div class="err" id="'+id+'-e"></div></div>';
+}
+$("#common").innerHTML=common.map(field).join("");
+const who=$("#who"),route=$("#route");
+who.onchange=()=>{const c=document.querySelector('[data-id=org]'),on=who.value&&who.value!=="Individual";c.classList.toggle("hide",!on);if(on)c.dataset.req="1";else delete c.dataset.req};
+route.onchange=()=>{
+ const P=route.value==="Strategic Enquiry"?A:route.value?B:[];
+ n=7;
+ $("#path").innerHTML=P.map(s=>'<section class="step"><h2>'+s.h+'</h2>'+(s.p?'<p>'+s.p+'</p>':'')+s.qs.map(field).join("")+'</section>').join("");
+ $("#end").classList.toggle("hide",!P.length);
+};
+const EMAIL_RE=/^[A-Za-z0-9._%+'-]+@(?:[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?\.)+[A-Za-z]{2,}$/;
+function fail(f,m){f.querySelector(".err").textContent=m;const c=f.querySelector("input,select,textarea");c&&c.classList.add("bad");return f}
+function val(f){
+ const t=f.dataset.t,id=f.dataset.id;f.querySelector(".err").textContent="";
+ f.querySelectorAll(".bad").forEach(e=>e.classList.remove("bad"));
+ if(f.classList.contains("hide"))return null;
+ if(t==="m"){const v=[...f.querySelectorAll("input:checked")].map(e=>e.value);
+  return v.length||!f.dataset.req?v.join("; "):(f.querySelector(".err").textContent="Please select at least one option.",f)}
+ const el=f.querySelector("input,select,textarea"),v=el.value.trim();
+ if(!v)return f.dataset.req?fail(f,t==="d"?"Please choose an option.":"This field is required."):"";
+ if(t==="e"){if(!EMAIL_RE.test(v))return fail(f,"Please enter a valid email address, for example name@example.com.");
+  if(id==="email2"&&v.toLowerCase()!==$("#email").value.trim().toLowerCase())return fail(f,"The two email addresses do not match.")}
+ if(t==="u"){try{const u=new URL(/^https?:\/\//i.test(v)?v:"https://"+v);if(!u.hostname.includes("."))throw 0;el.value=u.href}catch(e){return fail(f,"Please enter a valid web address.")}}
+ return v;
+}
+["email","email2","url"].forEach(i=>{const el=$("#"+i);el.addEventListener("blur",()=>{if(el.value.trim()||i==="email2"&&$("#email").value.trim())val(el.closest(".fld"))});el.addEventListener("input",()=>{if(el.classList.contains("bad"))val(el.closest(".fld"))})});
+$("#email").addEventListener("input",()=>{if($("#email2").value)val($("#email2").closest(".fld"))});
+$("#f").onsubmit=async e=>{
+ e.preventDefault();const data={},bad=[];
+ document.querySelectorAll(".fld").forEach(f=>{const r=val(f);if(r&&typeof r==="object")bad.push(r);else if(r!==null)data[f.querySelector("label.q").textContent.trim()]=r});
+ const ok=$("#ok");$("#ok-e").textContent="";
+ if(!route.value){$("#msg").textContent="Please choose what brings you to Mind Anchor.";return}
+ if(!ok.checked){$("#ok-e").textContent="Please confirm before submitting.";if(!bad.length){ok.focus();return}}
+ if(bad.length){bad[0].scrollIntoView({behavior:"smooth",block:"center"});$("#msg").textContent="Please review the highlighted fields.";return}
+ if(!ok.checked)return;
+ $("#msg").textContent="";data.path=route.value;data["Receive Anchored Intelligence"]=$("#news").checked?"Yes":"No";
+ if(ENDPOINT){try{const r=await fetch(ENDPOINT,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(data)});if(!r.ok)throw 0}catch(x){$("#msg").textContent="Something went wrong sending your submission. Please try again.";return}}
+ $("#f").classList.add("hide");const a=$("#after");a.classList.add("show");a.focus();a.scrollIntoView({behavior:"smooth",block:"start"});
+};
+</script>
+</body>
+</html>
